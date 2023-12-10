@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2023 hyaniner@outlook.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,19 +19,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
-class FCallNowGlobalEditorFunctionMenuModule : public IModuleInterface
+
+
+class FCallNowBPEditorModule : public IModuleInterface
 {
 public:
 
+	void CallNowBPTestFunctionBody();
+	
+	/** IModuleInterface implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
+	void OnFEngineLoopInitComplete();
 
-	void OnMainFrameLoaded(TSharedPtr<SWindow> InRootWindow, bool bIsRunningStartupDialog);
-	
-	void GeneralTestFunction();
+	void MakePullDownMenuBlueprintEditor(FMenuBarBuilder &menuBuilder);
+	void FillPullDownMenuBlueprintEditor(FMenuBuilder &menuBuilder);
+
+	TSharedPtr<class FUICommandList> TestCommands;
 };
